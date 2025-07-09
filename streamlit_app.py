@@ -93,9 +93,9 @@ with col2:
         if epc_score != "None":
             data["data"]["epc-score"] = epc_score
 
-        # Show request data
-        st.markdown("### 📤 Request Data")
-        st.json(data)
+        # Show request data(optional, for test)
+        # st.markdown("### 📤 Request Data")
+        # st.json(data)
 
         # Send request
         try:
@@ -110,9 +110,9 @@ with col2:
                     st.markdown("### 💰 Predicted Price")
                     st.markdown(f"# €{price:,.2f}")
 
-                    # Show response
-                    st.markdown("### 📥 API Response")
-                    st.json(result)
+                    # Show response data(optional, for test)
+                    # st.markdown("### 📥 API Response")
+                    # st.json(result)
 
                     # Price analysis
                     st.markdown("### 📊 Price Analysis")
@@ -142,7 +142,7 @@ with col2:
         except requests.exceptions.RequestException as e:
             st.error(f"❌ Connection Error: {str(e)}")
             st.info("💡 The API might be starting up. Please wait 30-60 seconds and try again.")
-            
+
     else:
         # Show imformation if no click
         st.info("👆 Click the 'Predict Price' button to get a house price prediction!")
