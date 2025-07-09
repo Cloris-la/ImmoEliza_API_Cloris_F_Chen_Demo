@@ -126,25 +126,11 @@ with col2:
                             st.metric("Price per Bedroom", f"€{price/bedrooms:,.0f}")
                         else:
                             st.metric("Price per Bedroom", "N/A")
-                        
-                    with col2_3:
-                        # Predict from region
-                        if 1000 <= zip_code <= 1299:
-                            region = "Brussels"
-                            avg_price = 400000
-                        elif zip_code >= 9000:
-                            region = "Ghent area"
-                            avg_price = 350000
-                        else:
-                            region = "Other regions"
-                            avg_price = 300000
-                        
-                        comparison = "Above" if price > avg_price else "Below"
-                        st.metric(f"vs {region} avg", f"{comparison} average")
 
                 else:
                     st.error("❌ Prediction failed")
                     st.json(result)
+
             else:
                 st.error(f"❌ API Error: {response.status_code}")
                 try:
@@ -152,9 +138,11 @@ with col2:
                     st.json(error_data)
                 except:
                     st.text(response.text)
+
         except requests.exceptions.RequestException as e:
             st.error(f"❌ Connection Error: {str(e)}")
             st.info("💡 The API might be starting up. Please wait 30-60 seconds and try again.")
+            
     else:
         # Show imformation if no click
         st.info("👆 Click the 'Predict Price' button to get a house price prediction!")
